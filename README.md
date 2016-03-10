@@ -11,7 +11,7 @@ validate(numberString[, maxIntegralCount[, fractionalCount]])
 
 ## Examples
 
-The function retuns a `boolean`, in the following cases a `true`. The library has been `require`d using Node.js's syntax:
+The function retuns a `boolean`, in the following cases a `true`. In the following example the library has been `require`d using Node.js's syntax:
 
 ```javascript
 var decval = require('../index');
