@@ -1,5 +1,6 @@
 /**
- * ./node_modules/.bin/mocha -u tdd test/decval.js
+ * Testing: ./node_modules/.bin/mocha -u tdd test/decval.js
+ * Linting: node ./node_modules/eslint/bin/eslint.js index.js
  */
 
 var should = require('should');
