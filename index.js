@@ -14,12 +14,19 @@ var validate = function (value, integrals, fractionals) {
     if (typeof value !== 'string') {
         ok = false;
     } else {
-        var intPart = value.split('.')[0];
+        var onlyIntegrals = false;   // if no decimal separator is found, only check the number of integrals
+        var intPart; 
+        if (value.indexOf('.') === -1) {
+          onlyIntegrals = true;
+          intPart = value;
+        } else {
+          var intPart = value.split('.')[0];
+        }
         var fracPart = value.split('.')[1];
-        if (!intPart || !fracPart) {
+        if (!intPart || (!onlyIntegrals && !fracPart)) {
             ok = false;
         } else {
-            if (intPart.length > integrals || intPart.length < 1 || fracPart.length !== fractionals) {
+            if (intPart.length > integrals || intPart.length < 1 || (!onlyIntegrals && fracPart.length !== fractionals)) {
                 ok = false;
             } else {
                 // integral part
@@ -27,14 +34,16 @@ var validate = function (value, integrals, fractionals) {
                 if (intPartNr < 0 || '' + intPartNr !== intPart) {   // latter check for non numeric
                     ok = false;
                 }
-                // fractional part
-                for (var i = 0; i < fracPart.length; i++) {
-                    var fracPartNr = parseInt(fracPart.substring(i, i + 1));
-                    if ('' + fracPartNr !== fracPart.substring(i, i + 1)) {
-                        ok = false;
-                        break;
-                    }
-                }
+                if (!onlyIntegrals) {
+                  // fractional part
+                  for (var i = 0; i < fracPart.length; i++) {
+                      var fracPartNr = parseInt(fracPart.substring(i, i + 1));
+                      if ('' + fracPartNr !== fracPart.substring(i, i + 1)) {
+                          ok = false;
+                          break;
+                      }
+                  }
+              }
             }
         }
     }

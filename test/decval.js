@@ -122,4 +122,28 @@ describe('Validation tests', function () {
       }).should.throw('Integrals and fractionals must be at least 1');
     done();
   });
+
+  it('integrals without fractionals should be ok', function (done) {
+    var ok = decval.validate('123');
+    ok.should.be.true();
+    var ok = decval.validate('12');
+    ok.should.be.true();
+    var ok = decval.validate('9');
+    ok.should.be.true();
+    var ok = decval.validate('0');
+    ok.should.be.true();
+    var ok = decval.validate('-1');
+    ok.should.be.false();
+    ok = decval.validate('123', 3);
+    ok.should.be.true();
+    ok = decval.validate('1234');
+    ok.should.be.false();
+    ok = decval.validate('1234', 4);
+    ok.should.be.true();
+    ok = decval.validate('a123', 3);
+    ok.should.be.false();
+    ok = decval.validate('23a', 3);
+    ok.should.be.false();
+    done();
+  });
 });
