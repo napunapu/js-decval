@@ -38,7 +38,7 @@ var validate = function (value, integrals, fractionals){
 				  // fractional part
 				  for(var i = 0; i < fracPart.length; i++){
 					  // check for non numeric
-					  var fracPartNr = parseInt(fracPart.substring(i, i + 1));
+					  var fracPartNr = parseInt(fracPart.substring(i, i + 1), 10);
 					  if('' + fracPartNr !== fracPart.substring(i, i + 1)){
 						  ok = false;
 						  break;
