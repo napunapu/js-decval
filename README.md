@@ -15,6 +15,7 @@ The function retuns a `boolean`, in the following cases a `true`. In the followi
 
 ```javascript
 var decval = require('../index');
+var ok = decval.validate('123.4');
 var ok = decval.validate('123.45');
 var ok = decval.validate('123.45', 3);
 var ok = decval.validate('123.45', 3, 2);
